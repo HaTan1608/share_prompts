@@ -24,6 +24,7 @@ const handler = NextAuth({
     async signIn({ account, profile, user, credentials }) {
       try {
         await connectToDB();
+        console.log("prodifle",profile)
 
         // check if user already exists
         const userExists = await User.findOne({ email: profile.email });
