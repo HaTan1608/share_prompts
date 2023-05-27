@@ -12,7 +12,9 @@ const handler = NextAuth({
     })
   ],
   callbacks: {
+    
     async session({ session }) {
+      console.log("12312321312");
       // store the user id from MongoDB to session
       const sessionUser = await User.findOne({ email: session.user.email });
       session.user.id = sessionUser._id.toString();
@@ -28,6 +30,7 @@ const handler = NextAuth({
 
         // if not, create a new document and save user in MongoDB
         if (!userExists) {
+          console.log("12312321312");
           await User.create({
             email: profile.email,
             username: profile.name.replace(" ", "").toLowerCase(),
